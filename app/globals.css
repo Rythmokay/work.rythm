@@ -1,0 +1,189 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.bg-dot-pattern {
+  background-image: radial-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.dark .bg-dot-pattern {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+}
+
+@keyframes gradient {
+  0% { background-position: 0% center; }
+  100% { background-position: -200% center; }
+}
+
+.bg-300\% {
+  background-size: 300% auto;
+}
+
+.animate-gradient-slow {
+  animation: gradient 8s linear infinite;
+}
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 98%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 5.9% 10%;
+    --primary-rgb: 23, 23, 23;  /* This should match your primary color */
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 5.9% 10%;
+    --radius: 1rem;
+  }
+
+  .dark {
+    --background: 240 10% 4%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 6%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 4%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 4% 12%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 4% 12%;
+    --muted-foreground: 240 5% 65%;
+    --accent: 240 4% 12%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 4% 16%;
+    --input: 240 4% 16%;
+    --ring: 240 5% 65%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    background: hsl(var(--background));
+    min-height: 100vh;
+  }
+}
+
+/* Custom hover effects */
+.hover-card {
+  @apply transition-all duration-300 ease-in-out;
+}
+
+.hover-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px -15px hsl(var(--foreground) / 0.1);
+}
+
+.social-icon {
+  @apply transition-all duration-300 ease-in-out;
+}
+
+.social-icon:hover {
+  transform: translateY(-5px) scale(1.1);
+  box-shadow: 0 10px 20px -10px hsl(var(--foreground) / 0.2);
+}
+
+.nav-link {
+  @apply relative transition-colors duration-300;
+}
+
+.nav-link::after {
+  content: '';
+  @apply absolute left-0 bottom-0 w-0 h-0.5 bg-primary transition-all duration-300;
+}
+
+.nav-link:hover::after {
+  @apply w-full;
+}
+
+/* Metallic effects */
+.metallic {
+  background: linear-gradient(
+    145deg,
+    hsl(var(--card) / 0.9),
+    hsl(var(--muted) / 0.9)
+  );
+  backdrop-filter: blur(10px);
+  border: 1px solid hsl(var(--border) / 0.2);
+  box-shadow: 
+    0 4px 6px -1px hsl(var(--foreground) / 0.1),
+    0 2px 4px -2px hsl(var(--foreground) / 0.1),
+    inset 0 1px 0 hsl(var(--foreground) / 0.05);
+}
+
+.metallic-button {
+  @apply transition-all duration-300;
+  background: linear-gradient(
+    145deg,
+    hsl(var(--primary) / 0.9),
+    hsl(var(--primary) / 0.7)
+  );
+  box-shadow: 
+    0 4px 6px -1px hsl(var(--foreground) / 0.1),
+    0 2px 4px -2px hsl(var(--foreground) / 0.1),
+    inset 0 1px 0 hsl(var(--foreground) / 0.1);
+}
+
+.metallic-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 6px 8px -2px hsl(var(--foreground) / 0.15),
+    0 3px 6px -3px hsl(var(--foreground) / 0.15),
+    inset 0 1px 0 hsl(var(--foreground) / 0.1);
+}
+
+/* Mobile menu animation */
+.mobile-menu-enter {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.mobile-menu-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 200ms, transform 200ms;
+}
+
+.mobile-menu-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mobile-menu-exit-active {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 200ms, transform 200ms;
+}
